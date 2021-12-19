@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 
 
 class Statement:
@@ -29,4 +30,29 @@ class Statement:
 
     def plot(self):
         plt.plot(self.ledger['date'], self.ledger['balance'] / 100)
+        plt.title('Account Balance')
+        ax = plt.gca()
+        formatter = mdates.DateFormatter('%m-%d')
+        ax.xaxis.set_major_formatter(formatter)
         plt.show()
+
+    def spending(self):
+        cat = self.ledger['category'].unique().tolist()
+        cat.remove('income')
+
+        totals = []
+        for category in cat:
+            totals.append(-self._get_cat_total(category))
+
+        cat.append('savings')
+        income = self._get_cat_total('income')
+        savings = income - sum(totals)
+        if savings > 0:
+            totals.append(savings)
+
+        plt.pie(totals, labels=cat, autopct='%1.1f%%')
+        plt.title('Spending')
+        plt.show()
+
+    def _get_cat_total(self, category):
+        return self.ledger['amount'].where(self.ledger['category'] == category).sum()

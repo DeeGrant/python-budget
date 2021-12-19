@@ -8,6 +8,7 @@ def main():
     print(st.ledger.to_string())
 
     st.plot()
+    st.spending()
 
 
 if __name__ == "__main__":
