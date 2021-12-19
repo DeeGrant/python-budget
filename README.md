@@ -1,10 +1,19 @@
 # python-budget
 
-By default, reads in a .csv file in the statements directory.
+Reads in a .csv file and then plots the account balance and spending chart.
+The example .csv file can be found:
 
-    ./statements/statement.csv
+    ./statement/statement.csv
 
-## TODO
+Transaction values in statement.csv are stored in cents rather than dollars.
 
-- plot balance
-- finish this readme
+## Sample Output
+
+![account balance](references/account_balance.png)
+![spending chart](references/spending_chart.png)
+
+### Improvement Ideas
+- statement csv generator
+  - generate scheduled transactions
+- parse pdfs
+- pull statements/transactions from database

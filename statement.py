@@ -4,7 +4,7 @@ import matplotlib.dates as mdates
 
 
 class Statement:
-    def __init__(self, path: str = 'statements/statement.csv', balance: int = 0):
+    def __init__(self, path: str = 'statement/statement.csv', balance: int = 0):
         self.path = path
         self.start_balance = balance
         self.ledger = None
